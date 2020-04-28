@@ -1,7 +1,8 @@
 import os, sys, random
 
-def print_card(card) :
-    for word in card :
+# This is looping through all the words in my flashcards list
+def print_card(card):
+    for word in card:
         print (word, "      ",)
     print ("")
 
@@ -13,6 +14,7 @@ print ("and the word will be added to a list to be presented more often.")
 print ("q<Return> quits.")
 print ("")
 
+# If there are more than 1 card sets in the flashcards folder
 if len(sys.argv) > 1 :
     cardset = sys.argv[1]
     print ("Using cards from set '" + cardset + "'")
@@ -21,16 +23,19 @@ else :
 
 cardfile = os.path.join(os.path.expanduser("~"), ".flashcards", cardset)
 if (os.path.exists(cardfile)) :
-    execfile(cardfile)
+    exec(open(cardfile))
 else :
     cardfile = os.path.join(os.path.expanduser("~"), "flashcards", cardset)
     if (os.path.exists(cardfile)) :
-        execfile(cardfile)
+        exec(open(cardfile))
 
-if len(cards) > 0 :
-    print ("Read", len(cards), "cards from", cardfile)
+# Need to define cards properly!
+def missed_cards(cards):   
+    # If the length of cards is greater than 0
+    if len(cards) > 0 :
+        print ("Read", len(card), "cards from", cardfile)
 
-print ("")
+        # print ("")
 
 bonus_words = len(cards)
 
@@ -38,16 +43,16 @@ while True :
     card = random.choice(cards)
     which = random.choice(card)
 
-    print which,
-    if raw_input() == "q" :
+    print (which),
+    if input() == "q" :
         break
     print_card(card)
 
-    ans = raw_input()
+    ans = input()
     if ans == "q" :
         break
     if ans != "" :
-        # Save another copy of this word in the list
+#         # Save another copy of this word in the list
         cards.append(card)
 
 # Print the ones missed
