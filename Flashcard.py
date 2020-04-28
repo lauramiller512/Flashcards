@@ -14,7 +14,7 @@ print ("and the word will be added to a list to be presented more often.")
 print ("q<Return> quits.")
 print ("")
 
-# If there are more than 1 card sets in the flashcards folder
+# If there are more than 1 cardset in the flashcards folder
 if len(sys.argv) > 1 :
     cardset = sys.argv[1]
     print ("Using cards from set '" + cardset + "'")
@@ -31,29 +31,29 @@ else :
 
 # Need to define cards properly!
 def missed_cards(cards):   
-    # If the length of cards is greater than 0
-    if len(cards) > 0 :
-        print ("Read", len(card), "cards from", cardfile)
+    while True :
+        card = random.choice(cards)
+        which = random.choice(card)
 
-        # print ("")
+        print (which),
+        if input() == "q" :
+            break
+        print_card(card)
+
+        ans = input()
+        if ans == "q" :
+            break
+        if ans != "" :
+    #         # Save another copy of this word in the list
+            cards.append(card)
+
+# If the length of cards is greater than 0
+if len(cards) > 0 :
+    print ("Read", len(card), "cards from", cardfile)
+
+    print ("")
 
 bonus_words = len(cards)
-
-while True :
-    card = random.choice(cards)
-    which = random.choice(card)
-
-    print (which),
-    if input() == "q" :
-        break
-    print_card(card)
-
-    ans = input()
-    if ans == "q" :
-        break
-    if ans != "" :
-#         # Save another copy of this word in the list
-        cards.append(card)
 
 # Print the ones missed
 print ("\nMissed:")
